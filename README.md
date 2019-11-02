@@ -19,13 +19,16 @@ Main Menu.
 ![alt text](http://dcnigma.eu5.org/wp-content/uploads/2019/11/2019110219535400-691C9B2C6D1F1E032DDC01FD026159FD.jpg)   
 
 
-If i compile ![Past bin error](https://pastebin.com/SuDzfTXN) I-EAT-CHEEZE-YO version I get compile errors.
+If i compile [Past bin error](https://pastebin.com/SuDzfTXN) I-EAT-CHEEZE-YO version I get compile errors.
 
 #Change the Libs:
 
-Most homebrew project that use SDL are broken  because there are some changes made in the new update.
+Most homebrew Switch project that use SDL have broken Makefiles  
+Because there where some changes made in the new update of SDL2.  
+
 So you need to edit the Libary in the Makefile   
-"LIBS := -lSDL2_mixer -lSDL2 \
+
+" LIBS := -lSDL2_mixer -lSDL2 \
 -lpng -lz -ljpeg -lglad -lEGL -lglapi -ldrm_nouveau \
 -lmikmod -lvorbisidec -logg -lmpg123 -lmodplug -lstdc++ \
 -lnx -lm -lfreetype -lbz2 `aarch64-none-elf-pkg-config SDL2_ttf SDL2_image SDL2_gfx --libs SDL2_mixer` "
