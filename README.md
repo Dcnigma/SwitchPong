@@ -23,8 +23,8 @@ If i compile ![Past bin error](https://pastebin.com/SuDzfTXN) I-EAT-CHEEZE-YO ve
 
 #Change the Libs:
 
-Most homebrew project that use SDL are broken because there are some changes made in the new update.
-So you need to edit the Libary in the Makefile 
+Most homebrew project that use SDL are broken  because there are some changes made in the new update.
+So you need to edit the Libary in the Makefile   
 "LIBS := -lSDL2_mixer -lSDL2 \
 -lpng -lz -ljpeg -lglad -lEGL -lglapi -ldrm_nouveau \
 -lmikmod -lvorbisidec -logg -lmpg123 -lmodplug -lstdc++ \
