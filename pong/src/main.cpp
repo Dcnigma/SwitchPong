@@ -442,7 +442,7 @@ int main(int argc, char **argv) {
 				}
 				
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
-		//		Mix_PlayMusic(audio, -1);
+
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 				
 				if (player_01_kDown & KEY_DDOWN || player_01_kDown & KEY_A) {
@@ -470,7 +470,7 @@ int main(int argc, char **argv) {
 				}
 				
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
-		//		Mix_PlayMusic(audio, -1);
+
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 
 				if (player_01_kDown & KEY_DDOWN || player_01_kDown & KEY_A) {
@@ -528,7 +528,7 @@ int main(int argc, char **argv) {
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
 				
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
-		//		Mix_PlayMusic(audio, -1);
+
 				if (player_01_kDown & KEY_LSTICK_RIGHT) {
 					if (mainMenuIndex > 0) {
 						mainMenuIndex -= 1;
