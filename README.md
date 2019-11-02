@@ -9,4 +9,4 @@ Need to dig up the original graphics, but this is the first Game demo I made for
 ( Heavy Modded [source code](https://github.com/I-EAT-CHEEZE-YO/switch_sdl_pong/releases) )
 
 
-Download here the [Binary build](https://anonfile.com/0dZ1I696nb/pong_nro) for your switch.  
+Download here the [Binary build](https://anonfile.com/lbqcJ69cnf/pong_nro) for your switch.  
