@@ -400,31 +400,33 @@ int main(int argc, char **argv) {
 			
 			fps = round(frames / (elapsed / 1000.0)); //round fps
 			frames = 0; //reset frames
-			prevTime = currTime; //set previous time to current time
+			prevTime = currTime; //set previous time to current time	    
 			
 		}
 		
 		//Scan all the inputs. This should be done once for each frame
 
 		hidScanInput();
-		        u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+	//	        u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 
-	        if (kDown & KEY_A)
-        	    Mix_PlayMusic(audio, 1); //Play the audio file
+	//        if (kDown & KEY_MINUS)
+        //	    Mix_PlayMusic(audio, 1); //Play the audio file
 
 		//if splash 
 		if (state == SPLASH) {
-			Mix_PlayMusic(audio, 1);
+		Mix_PlayMusic(audio, -1); 				
 			splashTimer ++; //increase splash timer
 
 			if (splashTimer >= 100) { //if splash timer is greater than 75
 				state = MAIN_MENU; //change state to main menu
+
+
 			}
 			
 			SDL_RenderClear(renderer); //clear the renderer
 			renderTexture(splashTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //render the splash screen
 			SDL_RenderPresent(renderer); //show renderer on screen
-			Mix_PlayMusic(audio, 1);
+
 
 		}
 		
@@ -435,22 +437,24 @@ int main(int argc, char **argv) {
 			
 				if (kDown & KEY_B) {
 					restartGame(player_01, player_02, b);
+	
 					state = MAIN_MENU;
 				}
 				
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
-				
+		//		Mix_PlayMusic(audio, -1);
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 				
 				if (player_01_kDown & KEY_DDOWN || player_01_kDown & KEY_A) {
 					restartGame(player_01, player_02, b);
+	
 					state = MAIN_MENU;
 				}
 			}
-			
 			SDL_RenderClear(renderer); //Clear the screen
 			renderTexture(p1winsTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //Draw the player 1 wins screen 
 			SDL_RenderPresent(renderer); //Display the rendered image
+
 		
 		}
 		
@@ -461,27 +465,30 @@ int main(int argc, char **argv) {
 			
 				if (kDown & KEY_B) {
 					restartGame(player_01, player_02, b);
+	
 					state = MAIN_MENU;
 				}
 				
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
-				
+		//		Mix_PlayMusic(audio, -1);
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 
 				if (player_01_kDown & KEY_DDOWN || player_01_kDown & KEY_A) {
 					restartGame(player_01, player_02, b);
+	
 					state = MAIN_MENU;
 				}
 			}
-			
 			SDL_RenderClear(renderer); //Clear the screen
 			renderTexture(p2winsTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //Draw the player 2 wins screen 
 			SDL_RenderPresent(renderer); //Display the rendered image
+			
+
 		
 		}
 		
 		if (state == MAIN_MENU) { //if state is main menu
-				Mix_PlayMusic(audio, 1);
+			
 			if (hidGetHandheldMode() == 1) { //if joycons connected to switch
 
 				u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
@@ -500,13 +507,17 @@ int main(int argc, char **argv) {
 				}
 				if (kDown & KEY_A) {
 					if (mainMenuIndex == 0) {
+		
 						state = GAME_SINGLE_PLAYER;
 					}
 					if (mainMenuIndex == 1) {
 						if (hidGetHandheldMode() == 1) {
-							state = DETACH_JOYCONS;
+			
+					state = DETACH_JOYCONS;
+
 						} else if (hidGetHandheldMode() == 0) {
-							state = GAME_MULTI_PLAYER;
+							
+						state = GAME_MULTI_PLAYER;
 						}
 					}
 					if (mainMenuIndex == 2) {
@@ -517,7 +528,7 @@ int main(int argc, char **argv) {
 			} else if (hidGetHandheldMode() == 0) { //if joycons detached from switch
 				
 				u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO);
-				Mix_PlayMusic(audio, 1);
+		//		Mix_PlayMusic(audio, -1);
 				if (player_01_kDown & KEY_LSTICK_RIGHT) {
 					if (mainMenuIndex > 0) {
 						mainMenuIndex -= 1;
@@ -532,9 +543,11 @@ int main(int argc, char **argv) {
 				}
 				if (player_01_kDown & KEY_DDOWN) {
 					if (mainMenuIndex == 0) {
+		
 						state = GAME_SINGLE_PLAYER;
 					}
 					if (mainMenuIndex == 1) {
+		
 						state = GAME_MULTI_PLAYER;
 					}
 					if (mainMenuIndex == 2) {
@@ -543,11 +556,11 @@ int main(int argc, char **argv) {
 					}
 				}
 			}
-			
 			SDL_RenderClear(renderer); //Clear the screen
 			renderTexture(mainMenuTextures[mainMenuIndex], renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); //Draw the menu 
 			SDL_RenderPresent(renderer); //Display the rendered image
-			Mix_PlayMusic(audio, 1);
+			
+
 			
 		}
 		
@@ -555,22 +568,25 @@ int main(int argc, char **argv) {
 			u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 			
 			if (hidGetHandheldMode() == 1 && kDown & KEY_B) {
+
 				state = MAIN_MENU;
 			}
 			
 			if (hidGetHandheldMode() == 0) {
 				paused = true;
+
 				state = GAME_MULTI_PLAYER;
 			}
-			
 			SDL_RenderClear(renderer);
 			renderTexture(detachTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			SDL_RenderPresent(renderer);
 			
+
+			
 		}
 		
 		if (state == GAME_SINGLE_PLAYER) { //If Single player mode
-			
+	
 			if (!paused) {
 				
 				player_02.speed = 3.5; //set ai speed
@@ -679,17 +695,20 @@ int main(int argc, char **argv) {
 				
 				if (player_01.score == 10) {
 					restartGame(player_01, player_02, b);
+	
 					state = P1WINS;
 				}
 				
 				if (player_02.score == 10) { 
 					restartGame(player_01, player_02, b);
+	
 					state = P2WINS;
 				}
 		
 				SDL_RenderClear(renderer);
 				//works background but slow
 //				SDL_RenderCopy(renderer, backTexture, NULL, NULL);
+
 				drawLine(renderer, 1, 17, SCREEN_WIDTH, 17 ,0, 0, 0, 0);
 				drawLine(renderer, 1, SCREEN_HEIGHT - 1, SCREEN_WIDTH, SCREEN_HEIGHT - 1 ,0, 0, 0, 0);
 				drawLine(renderer, SCREEN_WIDTH, 17, SCREEN_WIDTH, SCREEN_HEIGHT ,0, 0, 0, 0);
@@ -698,6 +717,8 @@ int main(int argc, char **argv) {
 				SDL_RenderCopy(renderer, paddleTexture2, NULL, &player_02.pos);
 				renderTexture(ballTexture, renderer, b.x, b.y, BALL_WIDTH, BALL_HEIGHT);
 				SDL_RenderPresent(renderer);
+				
+
 			} else if (paused) {
 				
 				if (hidGetHandheldMode() == 1) { //if joycons connected to switch
@@ -710,6 +731,7 @@ int main(int argc, char **argv) {
 					
 					if (kDown & KEY_B) {
 						restartGame(player_01, player_02, b);
+		
 						state = MAIN_MENU;
 						paused = false;
 					}
@@ -720,14 +742,16 @@ int main(int argc, char **argv) {
 				
 					if (kDown & KEY_B) {
 						restartGame(player_01, player_02, b);
+		
 						state = MAIN_MENU;
 						paused = false;
 					}
 				}
-				
+
 				SDL_RenderClear(renderer);
 				renderTexture(pausedTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 				SDL_RenderPresent(renderer);
+				
 			
 			}
 		}
@@ -741,7 +765,8 @@ int main(int argc, char **argv) {
 				if (hidGetHandheldMode() == 1) { //if joycons connected to switch
 				
 					state = DETACH_JOYCONS;
-				
+	
+
 					} else if (hidGetHandheldMode() == 0) { //if joycon detached from switch
 				
 					u64 player_01_kDown = hidKeysDown(CONTROLLER_P1_AUTO); //Variable for player one buttons pressed
@@ -835,16 +860,19 @@ int main(int argc, char **argv) {
 				if (player_01.score == 10) {
 					restartGame(player_01, player_02, b);
 					state = P1WINS;
+	
 				}
 				
 				if (player_02.score == 10) { 
 					restartGame(player_01, player_02, b);
 					state = P2WINS;
+	
 				}
-		
+				
 				SDL_RenderClear(renderer);
 //				renderTexture(backTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 //				SDL_RenderCopy(renderer, backTexture, NULL, NULL);
+				
 				drawLine(renderer, 1, 17, SCREEN_WIDTH, 17 ,0, 0, 0, 0);
 				drawLine(renderer, 1, 17, SCREEN_WIDTH, 17 ,0, 0, 0, 0);
 				drawLine(renderer, 1, SCREEN_HEIGHT - 1, SCREEN_WIDTH, SCREEN_HEIGHT - 1 ,0, 0, 0, 0);
@@ -854,6 +882,8 @@ int main(int argc, char **argv) {
 				SDL_RenderCopy(renderer, paddleTexture2, NULL, &player_02.pos);
 				renderTexture(ballTexture, renderer, b.x, b.y, BALL_WIDTH, BALL_HEIGHT);
 				SDL_RenderPresent(renderer);
+				
+
 			
 			} else if (paused) {
 				
@@ -862,10 +892,11 @@ int main(int argc, char **argv) {
 					u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO); //Variable for player one buttons pressed
 			
 					state = DETACH_JOYCONS;
-					
+	
 					if (kDown & KEY_B) {
 						restartGame(player_01, player_02, b);
 						state = MAIN_MENU;
+		
 						paused = false;
 					}
 		
@@ -880,14 +911,17 @@ int main(int argc, char **argv) {
 					if (kDown & KEY_A || kDown & KEY_DLEFT) {
 						restartGame(player_01, player_02, b);
 						state = MAIN_MENU;
+		
 						paused = false;
 					}
 				}
-				
+
 				SDL_RenderClear(renderer);
 				renderTexture(pausedTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 				drawScores(player_01.score, player_02.score, fontTexture, renderer);
 				SDL_RenderPresent(renderer);
+				
+
 				
 			}
 		}
