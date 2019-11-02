@@ -19,7 +19,7 @@ Main Menu.
 ![alt text](http://dcnigma.eu5.org/wp-content/uploads/2019/11/2019110219535400-691C9B2C6D1F1E032DDC01FD026159FD.jpg)   
 
 
-If i compile [Past bin error](https://pastebin.com/SuDzfTXN) I-EAT-CHEEZE-YO version I get compile errors.
+If I compile [Past bin error](https://pastebin.com/SuDzfTXN) I-EAT-CHEEZE-YO version I get compile errors.
 
 #Change the Libs:
 
